@@ -1,9 +1,18 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { CustomCategory } from '../types';
 import { defaultCategories } from '../data/defaultCategories';
+import { storage } from '../lib/storage';
 
 export const useCategories = () => {
-  const [categories, setCategories] = useState<CustomCategory[]>(defaultCategories);
+  const [categories, setCategories] = useState<CustomCategory[]>(() => {
+    const savedCategories = storage.loadCategories();
+    return savedCategories || defaultCategories;
+  });
+
+  // カテゴリが変更されたらローカルストレージに保存
+  useEffect(() => {
+    storage.saveCategories(categories);
+  }, [categories]);
 
   const handleSaveCategory = useCallback((
     categoryData: Omit<CustomCategory, 'id'>,

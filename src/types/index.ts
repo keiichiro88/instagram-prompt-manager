@@ -4,6 +4,8 @@ export interface Prompt {
   content: string;
   category: string;
   isFavorite: boolean;
+  isTemplate?: boolean;
+  tags?: string[];
   createdAt: Date;
   updatedAt: Date;
 }

@@ -17,6 +17,7 @@ interface SidebarProps {
   onNewPrompt: () => void;
   onNewCategory: () => void;
   onEditCategory: (category: CustomCategory) => void;
+  onOpenExportImport: () => void;
   onCloseSidebar?: () => void;
 }
 
@@ -30,6 +31,7 @@ const Sidebar: React.FC<SidebarProps> = React.memo(({
   onNewPrompt,
   onNewCategory,
   onEditCategory,
+  onOpenExportImport,
   onCloseSidebar,
 }) => {
   const getCategoryCount = (categoryId: string) => {
@@ -79,6 +81,7 @@ const Sidebar: React.FC<SidebarProps> = React.memo(({
         categoriesLength={categories.length}
         onNewCategory={onNewCategory}
         onNewPrompt={onNewPrompt}
+        onOpenExportImport={onOpenExportImport}
         onCloseSidebar={onCloseSidebar}
       />
     </div>

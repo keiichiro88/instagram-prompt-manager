@@ -1,9 +1,18 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Prompt } from '../types';
 import { samplePrompts } from '../data/samplePrompts';
+import { storage } from '../lib/storage';
 
 export const usePrompts = () => {
-  const [prompts, setPrompts] = useState<Prompt[]>(samplePrompts);
+  const [prompts, setPrompts] = useState<Prompt[]>(() => {
+    const savedPrompts = storage.loadPrompts();
+    return savedPrompts || samplePrompts;
+  });
+
+  // プロンプトが変更されたらローカルストレージに保存
+  useEffect(() => {
+    storage.savePrompts(prompts);
+  }, [prompts]);
 
   const handleSavePrompt = useCallback((
     promptData: Omit<Prompt, 'id' | 'createdAt' | 'updatedAt'>,

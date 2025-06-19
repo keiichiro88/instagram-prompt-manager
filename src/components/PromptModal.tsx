@@ -15,6 +15,9 @@ const PromptModal: React.FC<PromptModalProps> = ({ isOpen, onClose, onSave, cate
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('writing');
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isTemplate, setIsTemplate] = useState(false);
+  const [tags, setTags] = useState<string[]>([]);
+  const [tagInput, setTagInput] = useState('');
 
   useEffect(() => {
     if (prompt) {
@@ -22,13 +25,36 @@ const PromptModal: React.FC<PromptModalProps> = ({ isOpen, onClose, onSave, cate
       setContent(prompt.content);
       setCategory(prompt.category);
       setIsFavorite(prompt.isFavorite);
+      setIsTemplate(prompt.isTemplate || false);
+      setTags(prompt.tags || []);
     } else {
       setTitle('');
       setContent('');
       setCategory(categories.length > 0 ? categories[0].id : 'writing');
       setIsFavorite(false);
+      setIsTemplate(false);
+      setTags([]);
     }
+    setTagInput('');
   }, [prompt, isOpen, categories]);
+
+  const addTag = () => {
+    if (tagInput.trim() && !tags.includes(tagInput.trim())) {
+      setTags([...tags, tagInput.trim()]);
+      setTagInput('');
+    }
+  };
+
+  const removeTag = (tagToRemove: string) => {
+    setTags(tags.filter(tag => tag !== tagToRemove));
+  };
+
+  const handleTagKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      addTag();
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,6 +64,8 @@ const PromptModal: React.FC<PromptModalProps> = ({ isOpen, onClose, onSave, cate
         content: content.trim(),
         category,
         isFavorite,
+        isTemplate,
+        tags,
       });
       onClose();
     }
