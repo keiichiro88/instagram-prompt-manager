@@ -59,7 +59,7 @@ const PromptCard: React.FC<PromptCardProps> = React.memo(({ prompt, categories, 
             </span>
           </div>
           
-          <div className="flex items-center space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+          <div className="flex items-center space-x-2">
             <button
               onClick={handleCopy}
               className="flex items-center space-x-1 px-3 py-1.5 text-blue-600 hover:bg-blue-50 rounded-md transition-colors duration-200 text-sm font-medium"
