@@ -58,33 +58,4 @@ export const storage = {
       localStorage.removeItem(key);
     });
   },
-
-  // データのエクスポート
-  exportData: () => {
-    const prompts = storage.loadPrompts();
-    const categories = storage.loadCategories();
-    
-    return {
-      prompts: prompts || [],
-      categories: categories || [],
-      exportedAt: new Date().toISOString(),
-      version: '1.0.0',
-    };
-  },
-
-  // データのインポート
-  importData: (data: any): boolean => {
-    try {
-      if (data.prompts) {
-        storage.savePrompts(data.prompts);
-      }
-      if (data.categories) {
-        storage.saveCategories(data.categories);
-      }
-      return true;
-    } catch (error) {
-      console.error('データのインポートに失敗しました:', error);
-      return false;
-    }
-  },
 };

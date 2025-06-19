@@ -3,11 +3,9 @@ import Sidebar from './components/Sidebar';
 import ContentArea from './components/ContentArea';
 import PromptModal from './components/PromptModal';
 import CategoryModal from './components/CategoryModal';
-import { ExportImportModal } from './components/ui/ExportImportModal';
 import { usePrompts } from './hooks/usePrompts';
 import { useCategories } from './hooks/useCategories';
 import { useModals } from './hooks/useModals';
-import { storage } from './lib/storage';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -22,15 +20,12 @@ function App() {
     setIsModalOpen,
     isCategoryModalOpen,
     setIsCategoryModalOpen,
-    isExportImportModalOpen,
-    setIsExportImportModalOpen,
     editingPrompt,
     editingCategory,
     handleNewPrompt,
     handleEditPrompt,
     handleNewCategory,
     handleEditCategory,
-    handleOpenExportImport,
   } = useModals();
 
   const onSavePrompt = useCallback((promptData: any) => {
@@ -51,11 +46,6 @@ function App() {
 
   const closeSidebar = useCallback(() => {
     setIsSidebarOpen(false);
-  }, []);
-
-  const handleImportData = useCallback((data: any) => {
-    // データがインポートされたらページをリロードして反映
-    window.location.reload();
   }, []);
 
   return (
@@ -105,7 +95,6 @@ function App() {
             onNewPrompt={handleNewPrompt}
             onNewCategory={handleNewCategory}
             onEditCategory={handleEditCategory}
-            onOpenExportImport={handleOpenExportImport}
             onCloseSidebar={closeSidebar}
           />
         </div>
@@ -137,13 +126,6 @@ function App() {
         onDelete={onDeleteCategory}
         categories={categories}
         editingCategory={editingCategory}
-      />
-
-      {/* データ管理モーダル */}
-      <ExportImportModal
-        isOpen={isExportImportModalOpen}
-        onClose={() => setIsExportImportModalOpen(false)}
-        onImport={handleImportData}
       />
     </div>
   );
