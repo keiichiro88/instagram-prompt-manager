@@ -14,7 +14,7 @@ export const SidebarActions: React.FC<SidebarActionsProps> = React.memo(({
   onNewPrompt,
   onCloseSidebar,
 }) => (
-  <div className="p-4 border-t border-gray-200 space-y-2">
+  <div className="hidden lg:block p-4 border-t border-gray-200 space-y-2">
     {/* カテゴリ追加ボタン */}
     {categoriesLength < 8 && (
       <button

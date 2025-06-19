@@ -3,6 +3,7 @@ import Sidebar from './components/Sidebar';
 import ContentArea from './components/ContentArea';
 import PromptModal from './components/PromptModal';
 import CategoryModal from './components/CategoryModal';
+import { MobileFooter } from './components/ui/MobileFooter';
 import { usePrompts } from './hooks/usePrompts';
 import { useCategories } from './hooks/useCategories';
 import { useModals } from './hooks/useModals';
@@ -126,6 +127,12 @@ function App() {
         onDelete={onDeleteCategory}
         categories={categories}
         editingCategory={editingCategory}
+      />
+
+      {/* モバイルフッター */}
+      <MobileFooter
+        onNewCategory={handleNewCategory}
+        onNewPrompt={handleNewPrompt}
       />
     </div>
   );

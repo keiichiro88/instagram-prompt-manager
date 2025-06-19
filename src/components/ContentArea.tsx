@@ -41,7 +41,7 @@ const ContentArea: React.FC<ContentAreaProps> = React.memo(({
 
   return (
     <div className="flex-1 bg-white overflow-y-auto">
-      <div className="p-8">
+      <div className="p-8 pb-24 lg:pb-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
             {getCategoryTitle()}
