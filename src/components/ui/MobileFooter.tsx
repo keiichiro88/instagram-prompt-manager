@@ -11,23 +11,23 @@ export const MobileFooter: React.FC<MobileFooterProps> = React.memo(({
   onNewPrompt,
 }) => {
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-gray-50 border-t border-gray-200 px-8 py-4 flex items-center justify-between lg:hidden shadow-lg">
+    <div className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-sm border-t border-gray-200 px-6 py-2 flex items-center justify-between lg:hidden">
       {/* カテゴリ追加ボタン */}
       <button
         onClick={onNewCategory}
-        className="flex items-center justify-center w-12 h-12 text-yellow-600 hover:text-yellow-700 hover:bg-yellow-50 rounded-full transition-all"
+        className="flex items-center justify-center w-10 h-10 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all"
         aria-label="新しいカテゴリを追加"
       >
-        <Folder className="w-7 h-7" fill="currentColor" />
+        <Folder className="w-5 h-5" />
       </button>
 
       {/* 新規プロンプトボタン */}
       <button
         onClick={onNewPrompt}
-        className="flex items-center justify-center w-12 h-12 text-yellow-600 hover:text-yellow-700 hover:bg-yellow-50 rounded-full transition-all"
+        className="flex items-center justify-center w-10 h-10 text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-all"
         aria-label="新しいプロンプトを作成"
       >
-        <PenSquare className="w-7 h-7" fill="currentColor" />
+        <PenSquare className="w-5 h-5" />
       </button>
     </div>
   );
